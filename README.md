@@ -1,2 +1,2 @@
 # dailySketch
-every day 
+every day

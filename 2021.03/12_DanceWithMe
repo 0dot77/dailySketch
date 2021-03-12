@@ -1,0 +1,52 @@
+let tileCount = 3;
+let noiseInc = 0.5;
+
+let word1 = 'DANCE'
+let word2 = 'WITH'
+let word3 = 'ME'
+
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+  background(255, 213, 61);
+  
+  let tileW = width/tileCount;
+  let tileH = height/tileCount;
+  
+  textSize(100);
+  textAlign(CENTER, CENTER);
+  textStyle(ITALIC);
+  text(word1, width/2, height/2 - 80);
+  text(word2, width/2, height/2);
+  text(word3, width/2, height/2 + 80);
+  
+  for(let x = 0; x < tileCount; x++) {
+    for(let y = 0; y < tileCount; y++) {
+      let px = x * tileW + tileW/2;
+      let py = y * tileH + tileH/2;
+      
+      push();
+      // ellipse(px,py,tileW,tileH);
+      translate(px,py);
+      beginShape();
+      let noiseOffy = 0;
+      let c = lerpColor(color(0,0,100),color(0,100,255),map(tan(frameCount/50),-1,1,1,2.5));
+      for(let angle = 0; angle <= TWO_PI - 0.1; angle += 0.1) {
+        let noiseOffx = 0;
+        fill(c);
+        noStroke();
+        let r = map(noise(angle,noiseOffy,frameCount/50),0,1,10,50);
+        let x = r * cos(angle);
+        let y = r * sin(angle);
+        //map(noise(noiseOffx,noiseOffy,frameCount/50),0,1,10,50);
+        vertex(x,y);
+        noiseOffx += noiseInc;
+      }
+      noiseOffy += noiseInc;
+      endShape(CLOSE);
+      pop();
+    }
+  }
+}

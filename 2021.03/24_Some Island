@@ -1,0 +1,50 @@
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+  background(0);
+  
+  translate(width/2, height/2);
+  
+  
+    push();
+    scale(0.15);
+  beginShape(LINES);
+  strokeWeight(10);
+  stroke(255,10);
+  // let m = map(mouseX,0,400,-TWO_PI,TWO_PI);
+  for(let angle = -1; angle < 5; angle += 0.08) {
+    let x = angle * 250;
+    let y = sin(angle + frameCount/50) * 500;
+    vertex(x,y);
+    vertex(y,x);
+    vertex(-x,-y);
+    // fill(255);
+    // ellipse(x,y,100,100);
+    // ellipse(y,x,100,100);
+  }
+  endShape();
+  pop();
+  
+  //island main
+  push();
+  scale(0.11);
+  beginShape(LINES);
+  strokeWeight(5);
+  stroke(255);
+  // let m = map(mouseX,0,400,-TWO_PI,TWO_PI);
+  for(let angle = -1; angle < 5; angle += 0.08) {
+    let x = angle * 250;
+    let y = sin(angle + frameCount/50) * 50;
+    vertex(x,y);
+    vertex(y,x);
+    vertex(-x,-y);
+    // fill(255);
+    // ellipse(x,y,100,100);
+    // ellipse(y,x,100,100);
+  }
+  endShape();
+  pop();
+  
+}

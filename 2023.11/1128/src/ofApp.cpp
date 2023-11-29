@@ -45,6 +45,12 @@ void ofApp::exit(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+    int randomImgNum = ofRandom(100);
+     
+     ostringstream oss;
+     oss << "Result_" << randomImgNum << ".png";
+     img.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
+     img.save(oss.str());
 
 }
 
